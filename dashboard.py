@@ -66,7 +66,10 @@ def load_cached_model():
     try:
         return load_model()
     except FileNotFoundError:
-        return None, None
+        from model import train_model
+        st.info("No saved model found. Training model now for first run...")
+        model, _, _, _, _, feature_names = train_model()
+        return model, feature_names
 
 
 model, feature_names = load_cached_model()
