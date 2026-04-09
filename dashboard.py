@@ -81,10 +81,6 @@ if model is None:
 
     model, feature_names = load_cached_model()
 
-    if model is None:
-        st.error("Model failed to load.")
-        st.stop()
-
 
 # -------------------------------------------------------
 # Helper: calculate account age from a date
