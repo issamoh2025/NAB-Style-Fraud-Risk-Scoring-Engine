@@ -71,6 +71,17 @@ def load_cached_model():
 
 model, feature_names = load_cached_model()
 
+if model is None:
+    import subprocess
+    st.warning("Model not found — training model (one-time setup)...")
+    subprocess.run(["python", "model.py"])
+
+    model, feature_names = load_cached_model()
+
+    if model is None:
+        st.error("Model failed to load.")
+        st.stop()
+
 
 # -------------------------------------------------------
 # Helper: calculate account age from a date
